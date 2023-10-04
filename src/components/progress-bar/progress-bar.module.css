@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;  
+  gap: 5px;
+}
+
+.bar {
+  height: 5px;
+  position: relative;
+  width: 0%;
+  background-color: var(--color-pink);
+  border-radius: var(--border-r);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.minute {
+  font-size: var(--font-small);
+  color: var(--color-gray);
+}
+
+.main {
+  background-color: var(--color-white);
+  border-radius: var(--border-r);
+  cursor: pointer;
+}

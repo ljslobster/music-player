@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Regular.ttf") format("truetype");
+}
+
+:root {
+  --font-larger: 1rem;
+  --font-medium: 0.75rem;
+  --font-small: 0.625rem;
+
+  --color-pink: #C93B76;
+  --color-white: #E5E7EB;
+  --color-gray-dark: #212936;
+  --color-gray: #4D5562;
+
+  --border-r: 15px;
+
+
+  --bg-gradient: linear-gradient(to right, #4c3847, #2b415d)
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter";
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  background-image: var(--bg-gradient);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  -webkit-user-select: none;  
+  user-select: none; 
+}
