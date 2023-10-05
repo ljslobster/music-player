@@ -34,7 +34,7 @@ export default function MusicPlayerProvider({
   children: React.ReactNode;
 }) {
   const musicRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [state, dispatch] = useReducer(musicReducer, initialState);
 
   const handlePlayMusic = useCallback(() => {
