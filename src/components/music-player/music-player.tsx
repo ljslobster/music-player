@@ -1,7 +1,7 @@
 import music from "./music-player.module.css";
 import { ProgressBar } from "../progress-bar/progress-bar";
 import { useMusic } from "../../hooks/music";
-import { Next, Play, Prev } from "../icons";
+import { Next, Pause, Play, Prev } from "../icons";
 
 export default function MusicPlayer() {
   const {
@@ -10,12 +10,14 @@ export default function MusicPlayer() {
     handlePrevMusic,
     handleNextMusic,
     handlePlayMusic,
+    isPlaying,
     handleSetCurrentTime,
   } = useMusic();
 
   const handleTimeUpdate = (event: React.SyntheticEvent<HTMLAudioElement>) => {
     handleSetCurrentTime(event.currentTarget.currentTime);
   };
+
 
   return (
     <article className={music.container}>
@@ -31,22 +33,15 @@ export default function MusicPlayer() {
       </aside>
       <ProgressBar />
       <section className={music.controls}>
-        <button
-          className={music.prev}
-          onClick={handlePrevMusic}
-        >
+        <button className={music.prev} onClick={handlePrevMusic}>
           <Prev />
         </button>
-        <button
-          className={music.play}
-          onClick={handlePlayMusic}
-        >
-          <Play />
+        <button className={music.play} onClick={handlePlayMusic}>
+          {
+            isPlaying ? <Pause /> : <Play />
+          } {/* Display the determined icon */}
         </button>
-        <button
-          className={music.next}
-          onClick={handleNextMusic}
-        >
+        <button className={music.next} onClick={handleNextMusic}>
           <Next />
         </button>
       </section>

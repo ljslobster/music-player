@@ -1,3 +1,4 @@
-export { default as Next } from './Next';
-export { default as Play } from './Play';
-export { default as Prev } from './Prev';
+export { default as Next } from './next';
+export { default as Pause } from './pause';
+export { default as Play } from './play';
+export { default as Prev } from './previous';

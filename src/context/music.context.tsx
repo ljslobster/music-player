@@ -1,9 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useReducer,
-  useRef,
-} from "react";
+import { createContext, useCallback, useReducer, useRef, useState } from "react";
 import musics from "../musics-mock.json";
 import { Music } from "../models/music.model";
 import { musicReducer } from "../reducers/music.reducer";
@@ -24,6 +19,7 @@ const initialState: Music = {
 interface MusicContextValue {
   state: Music;
   musicRef: React.RefObject<HTMLAudioElement>;
+  isPlaying: boolean;
   handleNextMusic: () => void;
   handlePrevMusic: () => void;
   handleSetCurrentTime: (duration: number) => void;
@@ -38,45 +34,60 @@ export default function MusicPlayerProvider({
   children: React.ReactNode;
 }) {
   const musicRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [state, dispatch] = useReducer(musicReducer, initialState);
 
   const handlePlayMusic = useCallback(() => {
-    if (musicRef.current?.paused) {
-      musicRef.current?.play();
-    } else {
-      musicRef.current?.pause();
-    }
-  }, []);
+    if (musicRef.current) {
+      if (musicRef.current.paused) {
+        musicRef.current.play();
 
+        setIsPlaying(true);
+      } else {
+        musicRef.current.pause();
+
+        setIsPlaying(false);
+      }
+    }
+
+    console.log('play audio');
+  }, []);
+  
   const handleNextMusic = useCallback(() => {
     dispatch({ type: MUSIC_ACTIONS.NEXT_MUSIC, payload: 0 });
   }, []);
-
+  
   const handlePrevMusic = useCallback(() => {
     dispatch({ type: MUSIC_ACTIONS.PREV_MUSIC, payload: 0 });
   }, []);
+  
+  const handleSetCurrentTime = useCallback(
+    (duration: number) => {
+      if (!musicRef.current) return;
 
-  const handleSetCurrentTime = useCallback((duration: number) => {
-    if (!musicRef.current) return;
+      dispatch({
+        type: MUSIC_ACTIONS.SET_CURRENT_TIME,
+        payload: duration,
+      });
+      
+      if (duration % 1 === 0) {
+        musicRef.current.currentTime = duration;
+      }
+      
+      if (duration === musicRef.current.duration) {
+        handleNextMusic();
+      }
+    },
+    [handleNextMusic]
+  );
 
-    dispatch({
-      type: MUSIC_ACTIONS.SET_CURRENT_TIME,
-      payload: duration,
-    });
-
-    if (duration % 1 === 0) {
-      musicRef.current.currentTime = duration;
-    }
-
-    if (duration === musicRef.current.duration) {
-      handleNextMusic();
-    }
-  }, [handleNextMusic]);
+  musicRef.current ? musicRef.current.volume = 0.05 : null;
 
   return (
     <MusicContext.Provider
       value={{
         state,
+        isPlaying,
         musicRef,
         handleNextMusic,
         handlePrevMusic,
