@@ -49,8 +49,6 @@ export default function MusicPlayerProvider({
         setIsPlaying(false);
       }
     }
-
-    console.log('play audio');
   }, []);
   
   const handleNextMusic = useCallback(() => {
