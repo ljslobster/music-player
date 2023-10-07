@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 100%;  
+  width: 100%;
   gap: 5px;
 }
 
@@ -24,7 +24,41 @@
 }
 
 .main {
+  --progress: 0%;
+
+  appearance: none;
+  width: 100%;
+  height: 5px;
   background-color: var(--color-white);
   border-radius: var(--border-r);
+  position: relative;
+  outline: none;
+  border: none;
+}
+
+.main::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color 0.2s;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.main:hover::-webkit-slider-thumb {
+  background-color: var(--color-white);
+}
+
+.main::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--progress);
+  background-color: var(--color-pink);
+  height: 100%;
+  box-shadow: 0 0 10px var(--color-pink);
 }

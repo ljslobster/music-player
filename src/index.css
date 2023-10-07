@@ -12,11 +12,9 @@
   --color-white: #E5E7EB;
   --color-gray-dark: #212936;
   --color-gray: #4D5562;
+  --color-gray-dark-opacity: #212936da;
 
   --border-r: 15px;
-
-
-  --bg-gradient: linear-gradient(to right, #4c3847, #2b415d)
 }
 
 * {
@@ -32,7 +30,10 @@ img {
 }
 
 html {
-  background-image: var(--bg-gradient);
+  background-color: var(--color-gray-dark);
+  background-image: url("/images/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 html,

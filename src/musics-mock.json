@@ -3,15 +3,15 @@
     "id": 1,
     "path": "/audios/forest-lullaby-110624.mp3",
     "title": "Lost in the City Lights",
-    "author": "Lesfm",
     "cover": "/images/cover-1.png",
+    "author": "Cosmo Sheldrake",
     "duration": 138
   },
   {
     "id": 2,
     "path": "/audios/lost-in-city-lights-145038.mp3",
     "title": "Forest Lullaby",
-    "author": "Cosmo Sheldrake",
+    "author": "Lesfm",
     "cover": "/images/cover-2.png",
     "duration": 72
   }

@@ -4,7 +4,7 @@ import { Music } from "../models/music.model";
 import { musicReducer } from "../reducers/music.reducer";
 import { MUSIC_ACTIONS } from "../constants/music";
 
-const initialMusic = musics[1];
+const initialMusic = musics[0];
 
 const initialState: Music = {
   path: initialMusic.path,
@@ -34,7 +34,7 @@ export default function MusicPlayerProvider({
   children: React.ReactNode;
 }) {
   const musicRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [state, dispatch] = useReducer(musicReducer, initialState);
 
   const handlePlayMusic = useCallback(() => {
